@@ -1,0 +1,147 @@
+  Wed Jun 14 2006 20:20                                                                                                  Page    1
+
+
+
+
+
+
+
+               2500 A.D. 8051 Macro Assembler  -  Version 4.03c
+               ------------------------------------------------
+
+                       Input  Filename : t2.asm
+                       Output Filename : t2.obj
+
+
+    1                          	;t2.asm	
+    2                          	;Driver for 7seg display.	                                      
+    3                          	;----------------------------------------------------------------------
+    4   0000                   		CHIP	8052
+    5                          		.list 	on		;generate list file
+    6                          	
+    7                          	;----------------------------------------------------------------------
+    8                          	;----------------------------------------------------------------------
+    9                          	;Define byte variables here...
+   10                          	
+   11          0030            	ds1:		EQU	30h	;location for displaying value on display1
+   12          0031            	ds2:		EQU	31h	;location for displaying value on display2
+   13          0032            	ds3:		EQU	32h	;location for displaying value on display3
+   14          0033            	ds4:		EQU	33h	;location for displaying value on display4
+   15                          	;
+   16          0034            	dcount_1:	EQU	34h	;variable for generating delay
+   17          0035            	dcount_2:	EQU	35h	;variable for generating delay
+   18          0036            	dcount_3:	EQU	36h	;variable for generating delay
+   19                          	;----------------------------------------------------------------------
+   20                          	;Define bit variables here...
+   21                          	
+   22          00A0            	sl1:	REG	P2.0
+   23          00A1            	sl2:	REG	P2.1
+   24          00A2            	sl3:	REG	P2.2
+   25          00A3            	sl4:	REG	P2.3
+   26                          	
+   27                          	;----------------------------------------------------------------------
+   28   0000                   		org	0000h
+   29                          	
+   30                          	;----------------------------------------------------------------------
+   31                          	;Write your main program here onwards...
+   32   0000                   	loop:
+   33                          	;-----------------------------------------------------------
+   34   0000   C2 A0           		clr	sl1		;select display1
+   35   0002   D2 A1           		setb	sl2		;deselect display2
+   36   0004   D2 A2           		setb	sl3		;deselect display3
+   37   0006   D2 A3           		setb	sl4		;deselect display4
+   38                          	;
+   39   0008                   		
+   40   0008   75 30 60        		mov	ds1,#01100000b	;pattern for 1
+   41   000B   85 30 80        		mov	P0,ds1
+   42   000E                   		
+   43   000E   12 00 47        		call	delay
+   44                          	;-----------------------------------------------------------
+   45   0011   D2 A0           		setb	sl1		;deselect display1
+   46   0013   C2 A1           		clr	sl2		;select display2
+   47   0015   D2 A2           		setb	sl3		;deselect display3
+  Wed Jun 14 2006 20:20                                                                                                  Page    2
+
+
+
+
+   48   0017   D2 A3           		setb	sl4		;deselect display4
+   49                          	;
+   50   0019   75 31 DA        		mov	ds2,#11011010b	;pattern for 2
+   51   001C   85 31 80        		mov	P0,ds2
+   52   001F   12 00 47        		call	delay
+   53                          	;-----------------------------------------------------------
+   54   0022   D2 A0           		setb	sl1		;deselect display1
+   55   0024   D2 A1           		setb	sl2		;deselect display2
+   56   0026   C2 A2           		clr	sl3		;select display3
+   57   0028   D2 A3           		setb	sl4		;deselect display4
+   58                          	;
+   59   002A   75 32 F2        		mov	ds3,#11110010b	;pattern for 3
+   60   002D   85 32 80        		mov	P0,ds3
+   61   0030   12 00 47        		call	delay
+   62                          	;-----------------------------------------------------------
+   63   0033   D2 A0           		setb	sl1		;deselect display1
+   64   0035   D2 A1           		setb	sl2		;deselect display2
+   65   0037   D2 A2           		setb	sl3		;deselect display3
+   66   0039   C2 A3           		clr	sl4		;seselect display4
+   67                          	;
+   68   003B   75 33 66        		mov	ds4,#01100110b	;pattern for 4
+   69   003E   85 33 80        		mov	P0,ds4
+   70   0041   12 00 47        		call	delay
+   71                          	;
+   72   0044   01 00           		jmp	loop
+   73                          	
+   74                          	;----------------------------------------------------------------------
+   75                          	
+   76                          	
+   77                          	;----------------------------------------------------------------------
+   78                          	;Initialising subroutine code....
+   79   0046                   	init:
+   80   0046   22              		ret
+   81                          	
+   82                          	;----------------------------------------------------------------------
+   83                          	;Other subroutines..
+   84   0047                   	delay:
+   85   0047   75 36 07        		mov	dcount_3,#07h
+   86   004A   75 35 10        	l2:	mov	dcount_2,#10h
+   87   004D   75 34 FF        	l1:	mov	dcount_1,#0ffh
+   88   0050   D5 34 FD        		djnz	dcount_1,$
+   89   0053   D5 35 F7        		djnz	dcount_2,l1
+   90   0056   D5 36 F1        		djnz	dcount_3,l2
+   91   0059   22              		ret
+   92                          	
+   93                          	;----------------------------------------------------------------------
+   94   005A                   		end
+  Wed Jun 14 2006 20:20                                                                                                  Page    3
+
+
+Defined            Symbol Name             Value                References
+
+  Pre    BSECT                              0000      
+  Pre    CODE                               0000           28
+  Pre    DATA                               0000      
+   16    dcount_1                        =  0034           87     88
+   17    dcount_2                        =  0035           86     89
+   18    dcount_3                        =  0036           85     90
+   84    delay                              0047           43     52     61     70
+   11    ds1                             =  0030           40     41
+   12    ds2                             =  0031           50     51
+   13    ds3                             =  0032           59     60
+   14    ds4                             =  0033           68     69
+   79    init                               0046      
+   87    l1                                 004D           89
+   86    l2                                 004A           90
+   32    loop                               0000           72
+  Pre    RSECT                              0000      
+   22    sl1                             =  00A0           34     45     54     63
+   23    sl2                             =  00A1           35     46     55     64
+   24    sl3                             =  00A2           36     47     56     65
+   25    sl4                             =  00A3           37     48     57     66
+
+
+
+
+           Lines Assembled :  94             Assembly Errors :  0
+
+
+

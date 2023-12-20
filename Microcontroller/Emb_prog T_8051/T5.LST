@@ -1,0 +1,299 @@
+  Wed Jun 14 2006 20:29                                                                                                  Page    1
+
+
+
+
+
+
+
+               2500 A.D. 8051 Macro Assembler  -  Version 4.03c
+               ------------------------------------------------
+
+                       Input  Filename : t5.asm
+                       Output Filename : t5.obj
+
+
+    1                          	;t5.asm
+    2                          	;counter with ascii values.
+    3                          	;0000 to 9999
+    4                          	;----------------------------------------------------------------------
+    5   0000                   		CHIP 8052
+    6                          		.list on
+    7                          	;----------------------------------------------------------------------
+    8                          	;Define byte variables...
+    9          0030            	ds1:		EQU	30h	;location for displaying value on display1
+   10          0031            	ds2:		EQU	31h	;location for displaying value on display2
+   11          0032            	ds3:		EQU	32h	;location for displaying value on display3
+   12          0033            	ds4:		EQU	33h	;location for displaying value on display4
+   13                          	;
+   14          0034            	dcount_1:	EQU	34h	;variable for generating delay
+   15          0035            	dcount_2:	EQU	35h	;variable for generating delay
+   16          0036            	dcount_3:	EQU	36h	;variable for generating delay
+   17                          	;
+   18          0037            	count:		EQU	37h	;
+   19                          	;----------------------------------------------------------------------
+   20                          	;define bit variables here
+   21                          	
+   22          00A0            	sl1:	REG	P2.0		;display1
+   23          00A1            	sl2:	REG	P2.1		;display2
+   24          00A2            	sl3:	REG	P2.2		;display3
+   25          00A3            	sl4:	REG	P2.3		;display4
+   26                          	;----------------------------------------------------------------------
+   27   0000                   		org 	0000h
+   28   0000                   	main:
+   29   0000   75 30 30        		mov 	ds1,#"0"		;data for ds1
+   30   0003   75 31 30        		mov 	ds2,#"0"	 	;data for ds2
+   31   0006   75 32 30        		mov 	ds3,#"0"	 	;data for ds3
+   32   0009   75 33 30        		mov 	ds4,#"0"		;data for ds4
+   33   000C   75 37 1C        		mov	count,#28d
+   34                          	
+   35   000F   12 00 1D        	l10:	call 	display
+   36   0012   D5 37 FA        		djnz 	count,l10
+   37                          	
+   38   0015   75 37 1C        		mov 	count,#28d
+   39   0018   12 00 AA        		call 	inc_d
+   40   001B   01 0F           		jmp 	l10
+   41                          	;----------------------------------------------------------------------
+   42                          	
+   43                          	;----------------------------------------------------------------------
+   44                          	;Subroutines here onwards...
+   45                          	;display
+   46                          	;adisp1,2,3,4
+   47                          	;delay
+  Wed Jun 14 2006 20:29                                                                                                  Page    2
+
+
+
+
+   48                          	;inc_d
+   49                          	;------------------------------------------------------------
+   50   001D                   	display:
+   51   001D   C2 A0           		clr 	sl1	;select display1
+   52   001F   D2 A1           		setb	sl2	;
+   53   0021   D2 A2           		setb	sl3	;
+   54   0023   D2 A3           		setb	sl4	;
+   55                          	;
+   56   0025   12 00 56        		call	adisp1
+   57                          	;	
+   58   0028   12 00 86        		call 	delay
+   59                          	;----------------------------------------
+   60   002B   D2 A0           		setb 	sl1
+   61   002D   C2 A1           		clr 	sl2	;select display2
+   62   002F   D2 A2           		setb 	sl3 
+   63   0031   D2 A3           		setb 	sl4
+   64                          	;
+   65   0033   12 00 62        		call	adisp2
+   66                          	;	
+   67   0036   12 00 86        		call 	delay
+   68                          	;----------------------------------------
+   69   0039   D2 A0           		setb 	sl1
+   70   003B   D2 A1           		setb 	sl2
+   71   003D   C2 A2           		clr 	sl3	;select display3
+   72   003F   D2 A3           		setb 	sl4
+   73                          	;
+   74   0041   12 00 6E        		call	adisp3
+   75                          	;		
+   76   0044   12 00 86        		call 	delay
+   77                          	;----------------------------------------
+   78   0047   D2 A0           		setb 	sl1
+   79   0049   D2 A1           		setb 	sl2
+   80   004B   D2 A2           		setb 	sl3
+   81   004D   C2 A3           		clr 	sl4	;select display4
+   82                          	;
+   83   004F   12 00 7A        		call	adisp4
+   84                          	;		
+   85   0052   12 00 86        		call 	delay
+   86                          	;
+   87   0055   22              		ret
+   88                          	
+   89                          	;----------------------------------------
+   90   0056                   	adisp1:
+   91   0056   90 00 93        		mov 	dptr,#adisp_lut
+   92   0059   E5 30           		mov 	a,ds1
+   93   005B   C3              		clr	c
+   94   005C   94 30           		subb	a,#"0"
+   95   005E   93              		movc 	a,@a+dptr
+   96   005F   F5 80           		mov 	p0,a
+   97   0061   22              		ret
+   98                          	
+   99                          	;----------------------------------------
+  100   0062                   	adisp2:
+  101   0062   90 00 93        		mov 	dptr,#adisp_lut
+  102   0065   E5 31           		mov 	a,ds2
+  103   0067   C3              		clr	c
+  104   0068   94 30           		subb	a,#"0"
+  Wed Jun 14 2006 20:29                                                                                                  Page    3
+
+
+
+
+  105   006A   93              		movc 	a,@a+dptr
+  106   006B   F5 80           		mov 	p0,a
+  107   006D   22              		ret
+  108                          	
+  109                          	;----------------------------------------
+  110   006E                   	adisp3:
+  111   006E   90 00 93        		mov 	dptr,#adisp_lut
+  112   0071   E5 32           		mov 	a,ds3
+  113   0073   C3              		clr	c
+  114   0074   94 30           		subb	a,#"0"
+  115   0076   93              		movc 	a,@a+dptr
+  116   0077   F5 80           		mov 	p0,a
+  117   0079   22              		ret
+  118                          	
+  119                          	;----------------------------------------
+  120   007A                   	adisp4:
+  121   007A   90 00 93        		mov 	dptr,#adisp_lut
+  122   007D   E5 33           		mov 	a,ds4
+  123   007F   C3              		clr	c
+  124   0080   94 30           		subb	a,#"0"
+  125   0082   93              		movc 	a,@a+dptr
+  126   0083   F5 80           		mov 	p0,a
+  127   0085   22              		ret
+  128                          	;------------------------------------------------------------
+  129                          	
+  130                          	;------------------------------------------------------------
+  131   0086                   	delay:
+  132                          	;	mov	dcount_3,#07d
+  133   0086   75 35 10        	l2:	mov 	dcount_2,#10h
+  134   0089   75 34 FF        	l1:	mov 	dcount_1,#0ffh
+  135   008C   D5 34 FD        		djnz 	dcount_1,$
+  136   008F   D5 35 F7        		djnz 	dcount_2,l1
+  137                          	;	djnz 	dcount_3,l2
+  138   0092   22              		ret
+  139                          	;------------------------------------------------------------
+  140                          	
+  141                          	;------------------------------------------------------------
+  142                          	
+  143   0093                   	adisp_lut:
+  144   0093   FC              		db 	11111100b	;0
+  145   0094   60              		db 	01100000b	;1
+  146   0095   DA              		db 	11011010b	;2
+  147   0096   F2              		db 	11110010b	;3
+  148   0097   66              		db 	01100110b	;4
+  149   0098   B6              		db 	10110110b	;5
+  150   0099   BE              		db 	10111110b	;6
+  151   009A   E0              		db 	11100000b	;7
+  152   009B   FE              		db 	11111110b	;8
+  153   009C   F6              		db 	11110110b	;9
+  154                          	;
+  155   009D   FF              		db	11111111b	;3a
+  156   009E   FF              		db	11111111b	;3b
+  157   009F   FF              		db	11111111b	;3c
+  158   00A0   FF              		db	11111111b	;3d
+  159   00A1   FF              		db	11111111b	;3e
+  160   00A2   FF              		db	11111111b	;3f
+  161   00A3   FF              		db	11111111b	;40
+  Wed Jun 14 2006 20:29                                                                                                  Page    4
+
+
+
+
+  162                          	;
+  163   00A4   EE              		db 	11101110b	;a
+  164   00A5   3E              		db 	00111110b	;b
+  165   00A6   9C              		db 	10011100b	;c
+  166   00A7   7A              		db 	01111010b	;d
+  167   00A8   9E              		db 	10011110b	;e			
+  168   00A9   8E              		db 	10001110b	;f
+  169                          	
+  170                          	;------------------------------------------------------------
+  171                          	
+  172                          	
+  173                          	;------------------------------------------------------------
+  174                          	;Increments value of ds4 ds3 ds2 ds1 considering as a single
+  175                          	;four digit no from 0000 to 9999
+  176   00AA                   	inc_d:
+  177   00AA   05 30           		inc 	ds1
+  178   00AC   E5 30           		mov 	a,ds1
+  179   00AE   B4 3A 00        		cjne 	a,#"9"+1,$+3
+  180   00B1   50 01           		jnc 	l1_id 
+  181   00B3   22              		ret
+  182                          	
+  183                          	;----------------------------------------
+  184   00B4   75 30 30        	l1_id:	mov 	ds1,#"0"
+  185   00B7   05 31           		inc 	ds2
+  186   00B9   E5 31           		mov 	a,ds2
+  187   00BB   B4 3A 00        		cjne 	a,#"9"+1,$+3
+  188   00BE   50 01           		jnc 	l2_id
+  189   00C0   22              		ret
+  190                          	
+  191                          	;----------------------------------------
+  192   00C1   75 31 30        	l2_id:	mov 	ds2,#"0"
+  193   00C4   05 32           		inc 	ds3
+  194   00C6   E5 32           		mov 	a,ds3
+  195   00C8   B4 3A 00        		cjne 	a,#"9"+1,$+3 
+  196   00CB   50 01           		jnc 	l3_id
+  197   00CD   22              		ret
+  198                          	
+  199                          	;----------------------------------------
+  200   00CE   75 32 30        	l3_id:	mov 	ds3,#"0"
+  201   00D1   05 33           		inc 	ds4 
+  202   00D3   E5 33           		mov 	a,ds4
+  203   00D5   B4 3A 00        		cjne 	a,#"9"+1,$+3
+  204   00D8   50 01           		jnc	l4_id
+  205   00DA   22              		ret
+  206                          	
+  207                          	;----------------------------------------
+  208                          	
+  209   00DB   75 30 30        	l4_id:	mov	ds1,#"0"
+  210   00DE   75 31 30        		mov	ds2,#"0"
+  211   00E1   75 32 30        		mov	ds3,#"0"
+  212   00E4   75 33 30        		mov	ds4,#"0"
+  213   00E7   22              		ret	
+  214                          	
+  215                          	;------------------------------------------------------------
+  216                          	
+  217                          	
+  218                          	;----------------------------------------------------------------------
+  Wed Jun 14 2006 20:29                                                                                                  Page    5
+
+
+
+
+  219   00E8                   		end
+  Wed Jun 14 2006 20:29                                                                                                  Page    6
+
+
+Defined            Symbol Name             Value                References
+
+   90    adisp1                             0056           56
+  100    adisp2                             0062           65
+  110    adisp3                             006E           74
+  120    adisp4                             007A           83
+  143    adisp_lut                          0093           91    101    111    121
+  Pre    BSECT                              0000      
+  Pre    CODE                               0000           27
+   18    count                           =  0037           33     36     38
+  Pre    DATA                               0000      
+   14    dcount_1                        =  0034          134    135
+   15    dcount_2                        =  0035          133    136
+   16    dcount_3                        =  0036      
+  131    delay                              0086           58     67     76     85
+   50    display                            001D           35
+    9    ds1                             =  0030           29     92    177    178    184    209
+   10    ds2                             =  0031           30    102    185    186    192    210
+   11    ds3                             =  0032           31    112    193    194    200    211
+   12    ds4                             =  0033           32    122    201    202    212
+  176    inc_d                              00AA           39
+  134    l1                                 0089          136
+   35    l10                                000F           36     40
+  184    l1_id                              00B4          180
+  133    l2                                 0086      
+  192    l2_id                              00C1          188
+  200    l3_id                              00CE          196
+  209    l4_id                              00DB          204
+   28    main                               0000      
+  Pre    RSECT                              0000      
+   22    sl1                             =  00A0           51     60     69     78
+   23    sl2                             =  00A1           52     61     70     79
+   24    sl3                             =  00A2           53     62     71     80
+   25    sl4                             =  00A3           54     63     72     81
+
+
+
+
+           Lines Assembled :  219             Assembly Errors :  0
+
+
+

@@ -1,0 +1,141 @@
+  Wed Jun 14 2006 20:35                                                                                                  Page    1
+
+
+
+
+
+
+
+               2500 A.D. 8051 Macro Assembler  -  Version 4.03c
+               ------------------------------------------------
+
+                       Input  Filename : t7.asm
+                       Output Filename : t7.obj
+
+
+    1                          	;t7.asm
+    2                          	;Generating timer interrupt
+    3                          	;blinking LED
+    4                          	;----------------------------------------------------------------------
+    5   0000                   		CHIP 8052
+    6                          		.list on
+    7                          	;----------------------------------------------------------------------
+    8                          	;Define byte variables...
+    9          0030            	ds1:		EQU	30h	;location for displaying value on display1
+   10          0031            	ds2:		EQU	31h	;location for displaying value on display2
+   11          0032            	ds3:		EQU	32h	;location for displaying value on display3
+   12          0033            	ds4:		EQU	33h	;location for displaying value on display4
+   13                          	;
+   14          0034            	dcount_1:	EQU	34h	;variable for generating delay
+   15          0035            	dcount_2:	EQU	35h	;variable for generating delay
+   16          0036            	dcount_3:	EQU	36h	;variable for generating delay
+   17                          	;
+   18          0037            	count:		EQU	37h	;
+   19                          	;----------------------------------------------------------------------
+   20                          	;define bit variables here
+   21                          	
+   22          00A0            	sl1:	REG	P2.0		;display1
+   23          00A1            	sl2:	REG	P2.1		;display2
+   24          00A2            	sl3:	REG	P2.2		;display3
+   25          00A3            	sl4:	REG	P2.3		;display4
+   26                          	
+   27                          	;----------------------------------------------------------------------
+   28   0000                   		org 	0000h
+   29   0000   02 00 2C        		jmp	main
+   30                          	;----------------------------------------------------------------------
+   31   0003                   		org     0003h
+   32   0003   32              		reti			;ljmp	isr_i0
+   33                          	;
+   34   000B                   		org     000bh
+   35   000B   02 00 4F        		ljmp	isr_t0		;timer0 interrupt
+   36                          	;
+   37   0013                   		org     0013h
+   38   0013   32              		reti			;ljmp    isr_i1
+   39                          	;
+   40   001B                   		org     001bh
+   41   001B   32              		reti			;ljmp	isr_t1
+   42                          					;timer1 interrupt
+   43                          					;(isr_t1)baud rate for Usart
+   44                          					;(...hence no Interrupt)
+   45                          	
+   46   0023                   		org     0023h
+   47   0023   32              	        reti			;ljmp    isr_receive
+  Wed Jun 14 2006 20:35                                                                                                  Page    2
+
+
+
+
+   48                          					;Interrupt enabled only for receive.
+   49                          	;
+   50   002B                   		org     002bh
+   51   002B   32              	        reti			;ljmp    isr_t2
+   52                          	;----------------------------------------------------------------------
+   53   002C                   	main:
+   54   002C   C2 A0           		clr	sl1		;selecting display1
+   55   002E   D2 A1           		setb	sl2
+   56   0030   D2 A2           		setb	sl3
+   57   0032   D2 A3           		setb	sl4
+   58                          	;
+   59   0034   75 80 00        		mov	p0,#00h		;clear display
+   60   0037   75 37 14        		mov	count,#20d
+   61   003A   12 00 41        		call	init_timer0
+   62   003D   D2 AF           		setb	ea		;enable all interupts
+   63   003F   01 3F           		jmp	$	
+   64                          	;----------------------------------------------------------------------
+   65                          	;initialising routines done here...
+   66                          	;----------------------------------------------------------------------
+   67                          		;(89h)
+   68                          		;TMOD-->GATE, C/T, M1,	M0, GATE, C/T, M1, M0, T/C (timer1,timer0)
+   69                          		;init timer 0  for 1msec
+   70   0041                   	init_timer0:
+   71   0041   43 89 01        		orl	tmod,#01h		;t0 in 16 bit timer mode.
+   72   0044   75 8A 00        		mov	tl0,#00h		;Init timer0 with count for 65msec.
+   73   0047   75 8C 00        		mov	th0,#00h		;count=0000h for 65msec.
+   74   004A   D2 8C           		setb	tr0			;start timer 0.
+   75   004C   D2 A9           	        setb	et0			;enable timer 0 Interrupt.
+   76   004E   22              		ret 
+   77                          	;---------------------------------------------------------------------
+   78   004F                   	isr_t0:
+   79   004F   11 41           		call	init_timer0
+   80   0051   D5 37 05        		djnz	count,out_isr
+   81   0054   75 37 14        		mov	count,#20d
+   82   0057                   		
+   83   0057   B2 80           		cpl	p0.0			;dp segment 
+   84   0059                   	out_isr:
+   85   0059   32              		reti
+   86                          	;----------------------------------------------------------------------
+   87   005A                   	end
+  Wed Jun 14 2006 20:35                                                                                                  Page    3
+
+
+Defined            Symbol Name             Value                References
+
+  Pre    BSECT                              0000      
+  Pre    CODE                               002B           28     31     34     37     40     46     50
+   18    count                           =  0037           60     80     81
+  Pre    DATA                               0000      
+   14    dcount_1                        =  0034      
+   15    dcount_2                        =  0035      
+   16    dcount_3                        =  0036      
+    9    ds1                             =  0030      
+   10    ds2                             =  0031      
+   11    ds3                             =  0032      
+   12    ds4                             =  0033      
+   87    end                                005A      
+   70    init_timer0                        0041           61     79
+   78    isr_t0                             004F           35
+   53    main                               002C           29
+   84    out_isr                            0059           80
+  Pre    RSECT                              0000      
+   22    sl1                             =  00A0           54
+   23    sl2                             =  00A1           55
+   24    sl3                             =  00A2           56
+   25    sl4                             =  00A3           57
+
+
+
+
+           Lines Assembled :  87             Assembly Errors :  0
+
+
+

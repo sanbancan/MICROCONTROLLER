@@ -1,0 +1,176 @@
+  Wed Jun 14 2006 20:23                                                                                                  Page    1
+
+
+
+
+
+
+
+               2500 A.D. 8051 Macro Assembler  -  Version 4.03c
+               ------------------------------------------------
+
+                       Input  Filename : t3.asm
+                       Output Filename : t3.obj
+
+
+    1                          	;t3.asm
+    2                          	;Driver for 7seg display using display look up table.
+    3                          	;----------------------------------------------------------------------
+    4   0000                   		CHIP 8052
+    5                          		.list on
+    6                          	;----------------------------------------------------------------------
+    7                          	
+    8                          	;----------------------------------------------------------------------
+    9                          	;Define byte variables here...
+   10          0030            	ds1:		EQU	30h	;location for displaying value on display1
+   11          0031            	ds2:		EQU	31h	;location for displaying value on display2
+   12          0032            	ds3:		EQU	32h	;location for displaying value on display3
+   13          0033            	ds4:		EQU	33h	;location for displaying value on display4
+   14                          	;
+   15          0034            	dcount_1:	EQU	34h	;variable for generating delay
+   16          0035            	dcount_2:	EQU	35h	;variable for generating delay
+   17          0036            	dcount_3:	EQU	36h	;variable for generating delay
+   18                          	;----------------------------------------------------------------------
+   19                          	;define bit variables here
+   20                          	
+   21          00A0            	sl1:	REG	P2.0		;display1
+   22          00A1            	sl2:	REG	P2.1		;display2
+   23          00A2            	sl3:	REG	P2.2		;display3
+   24          00A3            	sl4:	REG	P2.3		;display4
+   25                          	
+   26                          	;----------------------------------------------------------------------
+   27   0000                   		ORG 	0000h
+   28   0000   75 80 00        		mov	p0,#00h
+   29   0003   75 30 01        	main:	mov	ds1,#01h		;value for display 1
+   30   0006   75 31 02        		mov	ds2,#02h	 	;value for display 2
+   31   0009   75 32 03        		mov	ds3,#03h	 	;value for display 3
+   32   000C   75 33 04        		mov	ds4,#04h		;value for display 4
+   33                          	
+   34   000F   12 00 14        		call	display
+   35                          	
+   36   0012   01 03           		jmp	main
+   37                          	;----------------------------------------------------------------------
+   38   0014                   	display:
+   39   0014   C2 A0           	disp1:	clr	sl1		;select display1
+   40   0016   D2 A1           		setb	sl2		;deselect display2
+   41   0018   D2 A2           		setb	sl3		;deselect display3
+   42   001A   D2 A3           		setb	sl4		;deselect display4
+   43   001C   90 00 74        		mov	dptr,#disp_lut
+   44   001F   E5 30           		mov	a,ds1
+   45   0021   93              		movc	a,@a+dptr
+   46   0022   F5 80           		mov	p0,a
+   47   0024                   		
+  Wed Jun 14 2006 20:23                                                                                                  Page    2
+
+
+
+
+   48   0024   12 00 61        		call	delay
+   49                          	;------------------------------------------------------------
+   50                          	
+   51   0027   D2 A0           	disp2:	setb	sl1		;deselect display1
+   52   0029   C2 A1           		clr	sl2		;select display2
+   53   002B   D2 A2           		setb	sl3 		;deselect display3
+   54   002D   D2 A3           		setb	sl4		;deselect display4
+   55   002F   90 00 74        		mov	dptr,#disp_lut
+   56   0032   E5 31           		mov	a,ds2
+   57   0034   93              		movc	a,@a+dptr
+   58   0035   F5 80           		mov	p0,a
+   59   0037                   		
+   60   0037   12 00 61        		call	delay
+   61                          	;------------------------------------------------------------
+   62                          	
+   63   003A   D2 A0           	disp3:	setb	sl1		;deselect display1
+   64   003C   D2 A1           		setb	sl2		;deselect display2
+   65   003E   C2 A2           		clr	sl3		;select display3
+   66   0040   D2 A3           		setb	sl4		;deselect display4
+   67   0042   90 00 74        		mov	dptr,#disp_lut
+   68   0045   E5 32           		mov	a,ds3
+   69   0047   93              		movc	a,@a+dptr
+   70   0048   F5 80           		mov	p0,a
+   71   004A                   			
+   72   004A   12 00 61        		call	delay
+   73                          	;------------------------------------------------------------
+   74                          	
+   75   004D   D2 A0           	disp4:	setb	sl1		;deselect display1
+   76   004F   D2 A1           		setb	sl2		;deselect display2
+   77   0051   D2 A2           		setb	sl3		;deselect display3
+   78   0053   C2 A3           		clr	sl4		;select display4
+   79   0055   90 00 74        		mov	dptr,#disp_lut
+   80   0058   E5 33           		mov	a,ds4
+   81   005A   93              		movc	a,@a+dptr
+   82   005B   F5 80           		mov	p0,a
+   83   005D                   			
+   84   005D   12 00 61        		call	delay
+   85   0060                   		
+   86   0060   22              		ret
+   87                          	 ;----------------------------------------------------------------------
+   88   0061                   	 
+   89   0061                   	delay:
+   90   0061   75 36 07        		mov	dcount_3,#07d
+   91   0064   75 35 FF        	l2:	mov	dcount_2,#0ffh
+   92   0067   75 34 FF        	l1:	mov	dcount_1,#0ffh
+   93   006A   D5 34 FD        		djnz	dcount_1,$
+   94   006D   D5 35 F7        		djnz	dcount_2,l1
+   95   0070   D5 36 F1        		djnz	dcount_3,l2
+   96   0073   22              		ret
+   97                          	;----------------------------------------------------------------------
+   98                          	
+   99   0074                   	disp_lut:
+  100                          	;		-abcdefgd-		
+  101   0074   FC              		db	 11111100b	;0
+  102   0075   60              		db	 01100000b	;1
+  103   0076   DA              		db	 11011010b	;2
+  104   0077   F2              		db	 11110010b	;3
+  Wed Jun 14 2006 20:23                                                                                                  Page    3
+
+
+
+
+  105   0078   66              		db	 01100110b	;4
+  106   0079   B6              		db	 10110110b	;5
+  107   007A   BE              		db	 10111110b	;6
+  108   007B   E0              		db	 11100000b	;7
+  109   007C   FE              		db	 11111110b	;8
+  110   007D   E6              		db	 11100110b	;9
+  111                          	
+  112                          	;----------------------------------------------------------------------
+  113   007E                   		end
+  Wed Jun 14 2006 20:23                                                                                                  Page    4
+
+
+Defined            Symbol Name             Value                References
+
+  Pre    BSECT                              0000      
+  Pre    CODE                               0000           27
+  Pre    DATA                               0000      
+   15    dcount_1                        =  0034           92     93
+   16    dcount_2                        =  0035           91     94
+   17    dcount_3                        =  0036           90     95
+   89    delay                              0061           48     60     72     84
+   39    disp1                              0014      
+   51    disp2                              0027      
+   63    disp3                              003A      
+   75    disp4                              004D      
+   38    display                            0014           34
+   99    disp_lut                           0074           43     55     67     79
+   10    ds1                             =  0030           29     44
+   11    ds2                             =  0031           30     56
+   12    ds3                             =  0032           31     68
+   13    ds4                             =  0033           32     80
+   92    l1                                 0067           94
+   91    l2                                 0064           95
+   29    main                               0003           36
+  Pre    RSECT                              0000      
+   21    sl1                             =  00A0           39     51     63     75
+   22    sl2                             =  00A1           40     52     64     76
+   23    sl3                             =  00A2           41     53     65     77
+   24    sl4                             =  00A3           42     54     66     78
+
+
+
+
+           Lines Assembled :  113             Assembly Errors :  0
+
+
+

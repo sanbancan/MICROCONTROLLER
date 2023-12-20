@@ -1,0 +1,129 @@
+directory structure for t10.asm
+sw7----stop watch with 7seg display and hex key_pad
+***********************************************************************
+
+
+;---------------------------------------------------
+c:\sw7\sw7.asm
+;---------------------------------------------------
+
+;--------------------------------------------------------------------
+	CHIP 8052
+	.list on
+;--------------------------------------------------------------------
+	include	c:\sw7\data\data.def
+	include	c:\sw7\data\data.equ
+;--------------------------------------------------------------------
+	org 	0000h
+	jmp	main
+;--------------------------------------------------------------------
+	include	c:\sw7\asm\isr_tab
+;--------------------------------------------------------------------
+;Specification for stopwatch...
+;A --> START	;start the stopwatch from the current count.
+;B --> STOP	;stops the stopwatch current count frozen.
+;C --> RESET	;reset the stopwatch to 0000.
+;---------------------------------------------------------------------
+main:
+	mov	sp,#top_of_stack
+	call	init		;init timer,display,etc.
+;
+	setb	ea		;enable all interupts
+;
+	call	test_display
+;
+;	jmp	$
+;
+	call	disp_sw		;display stopwatch
+loop:	call	get_key
+	call	keyprocess
+	jmp	loop
+
+;--------------------------------------------------------------------
+	include	c:\sw7\asm\init.asm
+	include	c:\sw7\asm\isr.asm
+	include	c:\sw7\util\delay.asm
+	include	c:\sw7\util\test.asm
+	include	c:\sw7\keys\key.asm
+	include	c:\sw7\keys\appl_kp.asm
+	include	c:\sw7\keys\appl.asm
+	include	c:\sw7\disp\disp.asm
+;--------------------------------------------------------------------
+	end
+;--------------------------------------------------------------------
+;SW7 sw7.asm	
+;----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+;----------------------------------------
+c:\sw7\asm\
+;----------------------------------------
+	c:\sw7\asm\init.asm
+			;init
+			;init_sw
+			;init_display
+			;init_keypad
+			;init_timer0
+			;init_delay_1sec
+		
+	c:\sw7\asm\isr.asm
+			;isr_t0
+			;delay_1sec
+			;scanner
+			;k
+			;adisp1,2,3,4
+			;disp_blank
+			;adisp_lut
+
+	c:\sw7\asm\isr_tab.asm
+
+;----------------------------------------
+c:\sw7\data\
+;----------------------------------------
+	c:\sw7\data\data.equ
+
+	c:\sw7\data\data.def
+
+;----------------------------------------
+c:\sw7\disp\
+;----------------------------------------
+	c:\sw7\disp\disp.asm
+			;disp_sw
+
+;----------------------------------------
+c:\sw7\keys\
+;----------------------------------------
+	c:\sw7\keys\appl.asm
+			;inc_d
+
+	c:\sw7\keys\key.asm
+			;keyprocess
+			;key_release
+			;get_key
+
+	c:\sw7\keys\appl_kp.asm
+			;process_a
+			;process_b
+			;process_c
+		
+;----------------------------------------
+c:\sw7\util\
+;----------------------------------------
+	c:\sw7\util\delay.asm
+			;wait_1sec
+			;wait_20ms
+
+	c:\sw7\util\test.asm
+			;test_display
+
+;----------------------------------------
+;----------------------------------------
+***********************************************************************
