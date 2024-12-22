@@ -1,0 +1,418 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0040)http://www.pjrc.com/tech/8051/index.html -->
+<HTML><HEAD><TITLE>Paul's Free 8051 Tools, Code and Projects</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1"><LINK 
+href="/favicon.ico" rel="shortcut icon">
+<META 
+content="8051, assembler, paulmon, circuit, monitor, 89c2051, firmware, code, mcs-51, 8031, 87c51, 80c51, 80c31, paul, stoffregen" 
+name=keywords>
+<META 
+content="Free 8051 microcontroller resources, PAULMON - Easy To Use Monitor Program, AS31 Assembler, Development Circuit Board Design, Code Library (ASM).  Free resources to help you with your 8051-based projects." 
+name=description>
+<META content=TRUE name=MSSmartTagsPreventParsing><LINK href="/favicon.ico" 
+rel=icon>
+<STYLE type=text/css>BODY {
+	FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+TD {
+	FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+P {
+	FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+</STYLE>
+
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY text=#000000 vLink=#202080 link=#0000d0 bgColor=#ffffff><!--htdig_noindex-->
+<DIV id=td 
+style="Z-INDEX: 1; LEFT: -200px; VISIBILITY: hidden; WIDTH: 40px; CLIP: rect(0px 40px 40px 0px); POSITION: absolute; TOP: 0px; HEIGHT: 40px"><A 
+href="http://www.pjrc.com/tech/8051/nofollow.html">.</A> </DIV><!--/htdig_noindex--><!--nav begin--><!--htdig_noindex-->
+<TABLE cellSpacing=2 cellPadding=0 width="100%">
+  <TBODY>
+  <TR>
+    <TD align=left rowSpan=2>
+      <TABLE cellSpacing=0 cellPadding=0 width=312>
+        <TBODY>
+        <TR>
+          <TD align=right><A 
+            href="http://www.pjrc.com/tech/8051/index.html#navend"><IMG 
+            height=10 alt="skip navigational links" hspace=0 
+            src="Paul's Free 8051 Tools, Code and Projects_files/1x1.gif" 
+            width=1 border=0></A><A href="http://www.pjrc.com/"><IMG height=31 
+            alt=PJRC 
+            src="Paul's Free 8051 Tools, Code and Projects_files/logo.gif" 
+            width=276 border=0></A></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top align=right></TD></TR>
+  <TR>
+    <TD vAlign=bottom align=right><SMALL><A 
+      href="https://www.pjrc.com/cgi-bin/store/step1">Shopping&nbsp;Cart</A> 
+      <IMG height=10 alt="" 
+      src="Paul's Free 8051 Tools, Code and Projects_files/a.gif" width=10 
+      align=middle> <A 
+      href="https://www.pjrc.com/cgi-bin/store/step2">Checkout</A> <IMG 
+      height=10 alt="" 
+      src="Paul's Free 8051 Tools, Code and Projects_files/a.gif" width=10 
+      align=middle> <A 
+      href="http://www.pjrc.com/cgi-bin/store/shipcost">Shipping&nbsp;Cost</A> 
+      <IMG height=10 alt="" 
+      src="Paul's Free 8051 Tools, Code and Projects_files/a.gif" width=10 
+      align=middle> <A 
+      href="http://www.pjrc.com/cgi-bin/archive/summary">Download&nbsp;Website</A> 
+      </SMALL></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=6 width="100%" border=0>
+  <TBODY>
+  <TR bgColor=#d0e0ff>
+    <TD align=middle><A href="http://www.pjrc.com/">Home</A></TD>
+    <TD align=middle><A href="http://www.pjrc.com/tech/mp3/">MP3 Player</A></TD>
+    <TD align=middle>8051 Tools</TD>
+    <TD align=middle><A href="http://www.pjrc.com/tech/">All Projects</A></TD>
+    <TD align=middle><A href="http://www.pjrc.com/store/">PJRC Store</A></TD>
+    <TD align=middle><A href="http://www.pjrc.com/map.html">Site 
+  Map</A></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=2 width="100%">
+  <TBODY>
+  <TR bgColor=#f0f0f0>
+    <TD align=left><SMALL>You are here: <A 
+      href="http://www.pjrc.com/tech/8051/">8051 Tools</A> <IMG height=10 alt="" 
+      src="Paul's Free 8051 Tools, Code and Projects_files/b.gif" width=10> 
+      <SPAN style="BACKGROUND-COLOR: #b0e4a8">Main Page</SPAN> </SMALL></TD>
+    <TD align=right><SMALL><A href="http://www.pjrc.com/search/">Search 
+      PJRC</A></SMALL> </TD></TR></TBODY></TABLE>
+<P>
+<P>
+<TABLE cellSpacing=0 cellPadding=0 width=180 align=left border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=6 width=160 border=0>
+        <TBODY>
+        <TR>
+          <TD align=middle bgColor=#d0e0ff><BIG><B>PJRC Store</B></BIG> </TD></TR>
+        <TR>
+          <TD bgColor=#f0f0f0><SMALL><IMG height=10 alt="" 
+            src="Paul's Free 8051 Tools, Code and Projects_files/a.gif" width=10 
+            align=middle> <A 
+            href="http://www.pjrc.com/store/dev_pcb_assem.html">8051 Dev Board, 
+            $79</A><BR><IMG height=10 alt="" 
+            src="Paul's Free 8051 Tools, Code and Projects_files/a.gif" width=10 
+            align=middle> <A 
+            href="http://www.pjrc.com/store/dev_display_20x2.html">LCD 20x2 
+            Display, $11</A><BR><IMG height=10 alt="" 
+            src="Paul's Free 8051 Tools, Code and Projects_files/a.gif" width=10 
+            align=middle> <A 
+            href="http://www.pjrc.com/store/cable_serial.html">Serial Cable, 
+            $5</A><BR><IMG height=10 alt="" 
+            src="Paul's Free 8051 Tools, Code and Projects_files/a.gif" width=10 
+            align=middle> <A href="http://www.pjrc.com/store/pwr_12vdc.html">12 
+            Volt Power, $8</A><BR><IMG height=10 alt="" 
+            src="Paul's Free 8051 Tools, Code and Projects_files/a.gif" width=10 
+            align=middle> <A href="http://www.pjrc.com/store/index.html">More 
+            Components...</A><BR></SMALL></TD></TR>
+        <TR>
+          <TD height=15></TD></TR>
+        <TR>
+          <TD align=middle bgColor=#d0e0ff><BIG><B>8051 Tools</B></BIG> </TD></TR>
+        <TR>
+          <TD bgColor=#f0f0f0><SMALL><IMG height=10 alt=selected 
+            src="Paul's Free 8051 Tools, Code and Projects_files/b.gif" 
+            width=10> <SPAN style="BACKGROUND-COLOR: #b0e4a8">Main 
+            Page</SPAN><BR><A 
+            href="http://www.pjrc.com/tech/8051/tools/index.html"><IMG height=10 
+            alt="" src="Paul's Free 8051 Tools, Code and Projects_files/c.gif" 
+            width=10 border=0> <B>Software</B></A><BR><A 
+            href="http://www.pjrc.com/tech/8051/paulmon2.html"><IMG height=10 
+            alt="" src="Paul's Free 8051 Tools, Code and Projects_files/c.gif" 
+            width=10 border=0> <B>PAULMON Monitor</B></A><BR><A 
+            href="http://www.pjrc.com/tech/8051/board5/index.html"><IMG 
+            height=10 alt="" 
+            src="Paul's Free 8051 Tools, Code and Projects_files/c.gif" width=10 
+            border=0> <B>Development Board</B></A><BR><A 
+            href="http://www.pjrc.com/tech/8051/serial_io.html"><IMG height=10 
+            alt="" src="Paul's Free 8051 Tools, Code and Projects_files/c.gif" 
+            width=10 border=0> <B>Code Library</B></A><BR><A 
+            href="http://www.pjrc.com/tech/8051/aicp-schematic.html"><IMG 
+            height=10 alt="" 
+            src="Paul's Free 8051 Tools, Code and Projects_files/c.gif" width=10 
+            border=0> <B>89C2051 Programmer</B></A><BR><A 
+            href="http://www.pjrc.com/tech/8051/free.html"><IMG height=10 alt="" 
+            src="Paul's Free 8051 Tools, Code and Projects_files/c.gif" width=10 
+            border=0> <B>Other Resources</B></A><BR></SMALL></TD></TR>
+        <TR>
+          <TD height=60></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><A 
+name=navend></A><!--/htdig_noindex--><!--nav end-->
+<H2>Paul's 8051 Tools, Projects and Free Code</H2><A name=maillist></A>
+<H3>Mailing List</H3>If you'd like to receive announcements of new additions to 
+this site, updates and changes, and new versions of the various pieces of code; 
+just fill in this very simple form. I rarely send announcements out, so you 
+won't get flooded with messages. 
+<P>
+<FORM action=/cgi-bin/tech/mail-list/mail-list method=post>Please enter your 
+email address:<BR><INPUT size=50 name=email> <INPUT type=submit value="Add Me"> 
+<BR><B>This form is optional</B>... you do <I>not</I> need to submit this form 
+to access any of the material below. </FORM>
+<P>
+<HR>
+<A name=as31_assembler></A>
+<H3>AS31 Assembler &amp; SDCC C Compiler</H3>AS31 is a free 8051 assembler 
+originally written by <A href="http://www.stauffercom.com/">Ken Stauffer</A>. 
+Versions of AS31 found here include important bug fixes and added features, such 
+as standard intel-hex output format for use with PAULMON2 and EPROM programmers. 
+AS31 is a good tool for building small 8051-based projects that are written in 
+100% 8051 assembly language. 
+<P>SDCC is a free C compiler written by Sandeep Dutta, Micheal Hope, Alan 
+Baldwin, John Hartman, Dmitry S. Obukhov, Jans J Boehm, Alan J Demers, Jean 
+Loius-VERN, Daniel Drotos, Kevin Vigor, Johan Knol, Scott Dattalo, Karl Bongers, 
+and others. More details are available at the <A 
+href="http://sdcc.sourceforge.net/">official SDCC web site</A>. The SDCC 
+available here, with "-pj#" added to the version number, is a modified version 
+that includes some additions to better support the 8051 developement boards 
+available at this site. 
+<P>GNU Make is written by Richard Stallman and Roland McGrath, as part of the <A 
+href="http://www.fsf.org/">Free Software Foundation's GNU's Not Unix</A> 
+project. 
+<P>
+<P>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TH><IMG height=35 alt="linux version" 
+      src="Paul's Free 8051 Tools, Code and Projects_files/tux_icon.gif" 
+      width=30 align=middle></TH>
+    <TH>Linux Download and Installation Instructions</TH></TR></TBODY></TABLE>
+<UL>
+  <LI><A href="http://www.pjrc.com/tech/8051/tools/as31_beta3.tar.gz">AS31 
+  2.0beta3 Source Code</A> (82k download) 
+  <LI><A href="http://www.pjrc.com/tech/8051/tools/sdcc231-pj2.tar.gz">SDCC 
+  2.3.1-pj2 Source Code</A> (2.8M download) 
+  <LI><A href="http://www.pjrc.com/tech/8051/tools/linux_compile.html">Compiling 
+  AS31 and SDCC on Red Hat 7.1 with gcc 2.96</A>. </LI></UL>
+<P>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TH><IMG height=30 alt="windows version" 
+      src="Paul's Free 8051 Tools, Code and Projects_files/win_icon.gif" 
+      width=35 align=middle></TH>
+    <TH>Windows Download and Installation Instructions</TH></TR></TBODY></TABLE>
+<UL>
+  <LI><A 
+  href="http://www.pjrc.com/tech/8051/tools/as31-sdcc231-pj3-win32.zip">SDCC C 
+  Compiler and AS31 Assembler and GNU Make Win32 Binaries</A> (1.1M download) 
+  <LI><A 
+  href="http://www.pjrc.com/tech/8051/tools/win32_install.html">Installing AS31, 
+  SDCC and GNU Make Binary Package</A> </LI></UL>
+<P> 
+<P>SDCC and GNU Make are <I>Free Software</I> provided under the GNU General 
+Public License (GPL). AS31 is also <I>Free Software</I>, provided under the BSD 
+license. The standard C libraries provided with SDCC are covered by the terms 
+and conditions of the GNU Lesser General Public License (LGPL). 
+<P>SDCC, AS31, and Gnu Make are distributed in the hope that they will be 
+useful, but <B>without any warranty</B>; without even the implied warranty of 
+<I>merchantability</I> or <I>fitness for a particular purpose</I>. 
+<P>A copy of the <A href="http://www.pjrc.com/tech/8051/tools/as31_old.html">old 
+as31 page</A> is still available. 
+<P>
+<P>
+<HR>
+<A name=paulmon></A>
+<H3>PAULMON 8051 Family Monitor/Debugger</H3>
+<P>
+<UL>
+  <LI><A href="http://www.pjrc.com/tech/8051/paulmon2.html">Download 
+  PAULMON2</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/pm2_docs/index.html">Read on-line 
+  Documentation for PAULMON2</A> 
+  <LI>The <A href="http://www.pjrc.com/tech/8051/paulmon1.html">original 
+  version</A> is still available. </LI></UL>
+<P>PAULMON is a user-friendly 8051 family monitor, intended for use in a single 
+board computer like the development board below. By placing PAULMON in the 
+board's EPROM, the board will "boot-up" to a friendly menu-driven monitor which 
+allows you to download your programs to RAM and run them, which is much faster 
+and easier than reprogramming the EPROM. PAULMON also provides several features 
+to help you debug your programs, including a disassembler and single-step 
+program execution. 
+<P>It is very easy to use and together with an 8051 family assembler, such as 
+the one above, it provides a very low-cost 8051 development system. PAULMON is 
+in the public domain. You may use pieces of the code in your own programs and 
+even incorporate the code into your own commercial products, if you wish. 
+<P><A href="http://www.pjrc.com/tech/8051/paulmon2.html">Download PAULMON2 
+Source or Object Code</A>. Nearly everything is improved and several new 
+features have been added... generally much better than version 1, even in the 
+beta versions. <A 
+href="http://www.pjrc.com/tech/8051/pm2_docs/index.html">Documentation for 
+PAULMON2</A> is available on-line. 
+<P><A href="http://www.pjrc.com/tech/8051/paulmon1.html">PAULMON1</A> was 
+originally developed in the Fall of 1991 in about four weeks. The code has 
+remained fixed, but my own needs have changed from project to project over the 
+years. These changes, additional features, plus a major overhaul of the existing 
+code is finally available as <A 
+href="http://www.pjrc.com/tech/8051/paulmon2.html">PAULMON2</A>. 
+<P>
+<HR>
+<A name=boards></A>
+<H3>Low-Cost 8051 Development Board Design</H3>This 8051 development board 
+provides an easy and low-cost way to develop projects based on the 8051 
+microcontroller, without the need to purchase any other equipment, such as EPROM 
+programmers or emulators. 
+<UL>
+  <LI><A href="http://www.pjrc.com/tech/8051/board4/index.html">Features and 
+  Photos</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/board4/first_use.html">Using The 
+  Board For The First Time</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/board4/blink_as31.html">LED Blink 
+  Example, Using AS31 Assembler</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/board4/blink_sdcc.html">LED Blink 
+  Example, Using SDCC C Compiler</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/board4/memory_map.html">Memory 
+  Map</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/board4/schematic.html">Schematic 
+  and Parts List</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/board4/pcb.html">PC Board 
+  Details</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/board4/construct.html">Construction 
+  and Testing</A> 
+  <LI><A 
+  href="http://www.pjrc.com/tech/8051/board4/troubleshooting.html">Troubleshooting 
+  Tips</A> </LI></UL>
+<P>
+<TABLE width=600 align=center>
+  <TBODY>
+  <TR>
+    <TD><A href="http://www.pjrc.com/tech/8051/board4/index.html"><IMG 
+      height=374 alt="Circuit Board Photo" 
+      src="Paul's Free 8051 Tools, Code and Projects_files/dev4_lcd2.jpg" 
+      width=586 border=0></A></TD>
+  <TR>
+    <TD><SMALL><B>Figure 1:</B> 8051 Development Board, Rev 4, With 16x2 
+      LCD</SMALL></TD></TR></TBODY></TABLE>
+<P>Important Features: 
+<UL>
+  <LI>PAULMON2 v2.1 Monitor, easy to learn and use. All PAULMON2 source code is 
+  available for <A href="http://www.pjrc.com/tech/8051/paulmon2.html">free 
+  download</A>, and may be used without any restrictions, even for 
+  copy-and-paste into your own programs. 
+  <LI>Flash ROM for non-volatile storage of downloaded programs, to allow the 
+  board to permanently run the downloaded program, without the PC computer. No 
+  EPROM programmer is needed to make the board permanently run your application. 
+  The Flash ROM can also be used for data logging. 
+  <LI>Two serial port connectors w/ on-board mux, allowing easier development of 
+  applications which require the serial port 
+  <LI>32 I/O Signals, and 8 Bit Bus signals, clearly labeled on the board 
+  <LI>Large prototype area to add custom circuits </LI></UL><BR clear=all><A 
+name=old_board></A>
+<P>The older versions are still on line: <A 
+href="http://www.pjrc.com/tech/8051/board3/schematic.html">Rev 3</A> (2001) <A 
+href="http://www.pjrc.com/tech/8051/board2/schematic.html">Rev 2</A> (1997), and 
+<A href="http://www.pjrc.com/tech/8051/dev-board-schematic.html">Rev 1</A> 
+(1992). Parts for these boards are no longer available. 
+<P><BR clear=all>
+<HR>
+<A name=code_library></A>
+<H3>8051 Code Library</H3>I've written quite a lot of 8051 code in the last few 
+years. Here are some <I>free</I> bits and pieces of code that may be useful, 
+along with some minimal documentation. 
+<P><IMG height=32 alt="useless little icon" 
+src="Paul's Free 8051 Tools, Code and Projects_files/postit.gif" width=32 
+align=left> These 8051 code examples are distributed in the hope that they will 
+be useful, but <B>without any warranty</B>; without even the implied warranty of 
+<I>merchantability</I> or <I>fitness for a particular purpose</I>. <BR 
+clear=all>
+<P>
+<H4>Paul's Code Library</H4>All of these are in the public domain. 
+<UL>
+  <LI><A href="http://www.pjrc.com/tech/8051/serial_io.html">Serial I/O 
+  Routines</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/autobaud.html">Automatic Baud Rate 
+  Detection</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/uartintr.html">Interrupt Driven 
+  Serial I/O</A> 
+  <LI><A 
+  href="http://www.pjrc.com/tech/8051/lexer-fixed-string.html">Fixed-String 
+  Lexer</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/rand.html">Pseudo-Random Number 
+  Generators</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/serial-eeprom.html">Serial EEPROM 
+  (93C46/93CS46) Read, Write, etc</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/amd-flash-rom.html">AMD Flash ROM 
+  Program and Erase Routines</A> -- incomplete 
+  <LI><A href="http://www.pjrc.com/tech/8051/xilinx-program.html">Xilinx FPGA 
+  Configuration Programming</A> -- incomplete 
+  <LI><A href="http://www.pjrc.com/tech/8051/82c55.txt">Using the 82C55 chip</A> 
+
+  <LI><A href="http://www.pjrc.com/tech/8051/ide/">Interfacing with an IDE Hard 
+  Disk Drive</A> </LI></UL>
+<H4>Contributed Works</H4>Refer to the author's comments for license details, if 
+any. 
+<UL>
+  <LI><A href="http://www.pjrc.com/tech/8051/contrib/tb51/index.html">Tiny Basic 
+  For 8051</A> ported to PM2 by Dave LeBlanc. 
+  <LI><A href="http://www.pjrc.com/tech/8051/contrib/Dzidek_LCD.txt">LCD Display 
+  Routines</A> and a <A 
+  href="http://www.pjrc.com/tech/8051/contrib/Dzidek_Schematic.jpg">simple 
+  schematic</A> by Dzidek &amp; Ogest. 
+  <LI><A href="http://www.pjrc.com/tech/8051/contrib/Ben_Loveday_lcd.txt">LCD 
+  Display via 82C55</A> by Ben Loveday. 
+  <LI><A 
+  href="http://www.pjrc.com/tech/8051/contrib/Ho_Weng_San_LCD_display.txt">LCD 
+  Display Driver</A> by Ho Weng San 
+  <LI><A href="http://www.pjrc.com/tech/8051/contrib/Craig_Jackson.txt">Xilinx 
+  Download</A> and readback for XC3090 by Craig Jackson 
+  <LI><A href="http://www.pjrc.com/tech/8051/contrib/Stephan_Joubert.txt">Misc 
+  code</A> library by Stephan Joubert also in a <A 
+  href="http://www.pjrc.com/tech/8051/contrib/PAUL.ZIP">ZIP file</A>. 
+  <LI><A 
+  href="http://www.pjrc.com/tech/8051/contrib/Paul_Hoepping.txt">AT89C2051 
+  programmer</A>, the code is in this <A 
+  href="http://www.pjrc.com/tech/8051/contrib/prog2051.zip">ZIP file</A> by Paul 
+  Hoepping </LI></UL>
+<HR>
+<A name=atmel_89c2051></A>
+<H3>Atmel 89C2051 in-circuit programmer</H3>The Atmel 89C2051 is a 20 pin 
+version of the popular 8051 microcontroller. It's got only 2k of built-in 
+program memory, but it's Flash ROM, so you can easily reprogram the chip without 
+the UV erasure step. This really cool Atmel version has all of the normal 128 
+bytes of ram (unlike some other low-cost 20 pin 8051 family members) and they 
+even left the built-in UART built-in. It's got some other features, but best of 
+all, it costs only about $5(US) from <A 
+href="http://www.marshall.com/">Marshall</A> in single piece quantities. Please 
+keep in mind that neither I nor Oregon State University represent Atmel or 
+Marshall. 
+<P>I have designed and built a simple programmer for this cool part which can 
+reprogram it <I>in-circuit</I>. You place the 89C2051 in this board, and connect 
+the board to your project's 20 pin socket with a ribbon cable. You can download 
+code to the programmer, reprogram the Atmel chip, and then place the chip back 
+into the circuit. Since it's Flash ROM, no UV erase step is required. You can 
+reprogram and test your code without moving the chip between sockets. As well, 
+the programmer supports an "echo-thru" mode, where the 89C2051's UART output is 
+echoed to the terminal controlling the 89C2051 in-circuit programmer, but only 
+while the 89C2051 is running in-circuit. 
+<P>To get started now, the design is quite similar to the development board 
+example above, with the addition of the following chips: 74HC00, CD4007, and 
+four CD4066. The three unused AND gates in that example are used here. Two NPN 
+and one PNP small-signal transistors are needed, as well as a 12 volt power 
+supply for the programming voltage and 4000 series logic. Only one of the 
+82C55's is used, but one 82C55 is required. <A 
+href="http://www.pjrc.com/tech/8051/aicp004b.asm">BETA Version 0.004</A> is now 
+available, also in <A href="http://www.pjrc.com/tech/8051/aicp004b.zip">ZIP 
+format</A>. As well, <A href="http://www.pjrc.com/tech/8051/aicp003b.asm">BETA 
+Version 0.003</A> is still available, but 0.004 is much easier to use. 
+<P>Someday more reasonable documentation and a schematic of the required 
+hardware will appear. For now, this <A 
+href="http://www.pjrc.com/tech/8051/aicp-schematic.html">beta release 
+schematic</A> is available for those who want to try to add the hardware support 
+to an existing development board. 
+<HR>
+<A name=resources></A>
+<H3>Other Resources</H3>
+<UL>
+  <LI><A href="http://www.pjrc.com/tech/8051/free.html">Free Stuff on the 
+  Net</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/datasheets.html">Manufacturer's 
+  8051 Datasheets</A> 
+  <LI><A href="http://www.pjrc.com/tech/8051/commercial.html">Commercial 
+  Products</A> </LI></UL>
+<P>
+<HR>
+Paul's 8051 Tools, Projects and Free Code Offerings; Paul Stoffregen <BR><!--url-->http://www.pjrc.com/tech/8051/index.html <BR>Last updated: <!--date-->November 28, 2003 <BR>Status: Pretty good, atmel icp in beta, missing 
+some docs for code. <BR>Suggestions, comments, criticisms, things you want?? <A 
+href="mailto:paul@pjrc.com">mailto:paul@pjrc.com</A> </BODY></HTML>

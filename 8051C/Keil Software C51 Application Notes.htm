@@ -1,0 +1,202 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0036)http://www.keil.com/appnotes/c51.asp -->
+<HTML><HEAD><TITLE>Keil Software C51 Application Notes</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META http-equiv=content-language content=en-us>
+<META http-equiv=description 
+content="C51  application notes from Keil Software.  These notes provide in-depth information about using the Keil development tools with your target microcontroller.">
+<META content="Keil Software, Inc." name=Author>
+<META content="Copyright (c) Keil Software, Inc.  All rights reserved." 
+name=Copyright>
+<META 
+content="C51 application notes from Keil Software.  These notes provide in-depth information about using the Keil development tools with your target microcontroller." 
+name=Description>
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR>
+<META content=8051 name=KeilToolSet>
+<META content="C51, application notes, programs, appnotes, keil software" 
+name=Keywords>
+<META content=FrontPage.Editor.Document name=ProgId><LINK 
+href="Keil Software C51 Application Notes_files/keil_web.css" type=text/css 
+rel=stylesheet>
+<STYLE type=text/css>LI {
+	PADDING-BOTTOM: 3px
+}
+</STYLE>
+</HEAD>
+<BODY>
+<TABLE class=Full cellSpacing=0 cellPadding=0 width=730 border=0>
+  <TBODY>
+  <TR>
+    <TD class=RiBar vAlign=top height="100%">
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR class=TbColor>
+          <TD noWrap width=10 height=60>&nbsp;</TD>
+          <TD noWrap>
+            <P class=TbTitle>Application Notes</P></TD>
+          <TD vAlign=center noWrap width=190><A href="http://www.keil.com/" 
+            target=_top><IMG height=44 alt="Keil Software" 
+            src="Keil Software C51 Application Notes_files/keil.gif" width=179 
+            align=right border=0></A> </TD>
+          <TD noWrap width=10>&nbsp;</TD></TR>
+        <TR class=MenuColor>
+          <TD noWrap width=10 height=20>&nbsp;</TD>
+          <TD noWrap><A class=MenuText 
+            onmouseover="window.status='Visit the Keil Software Home Page';return true" 
+            onmouseout="window.status='';return true" 
+            href="http://www.keil.com/default.asp" 
+            target=_top>&nbsp;&nbsp;Home&nbsp;&nbsp;</A> <A class=MenuText 
+            onmouseover="window.status='Get Information About Keil Software Products';return true" 
+            onmouseout="window.status='';return true" 
+            href="http://www.keil.com/product/default.asp" 
+            target=_top>&nbsp;&nbsp;Products&nbsp;&nbsp;</A> <A class=MenuText 
+            onmouseover="window.status='Review the Keil Training Course Schedule';return true" 
+            onmouseout="window.status='';return true" 
+            href="http://www.keil.com/training/default.asp" 
+            target=_top>&nbsp;&nbsp;Training&nbsp;&nbsp;</A> <A class=MenuText 
+            onmouseover="window.status='Search the Support Knowledgebase';return true" 
+            onmouseout="window.status='';return true" 
+            href="http://www.keil.com/support/default.asp" 
+            target=_top>&nbsp;&nbsp;Support&nbsp;&nbsp;</A> <A class=MenuText 
+            onmouseover="window.status='Search the Entire Keil Web Site';return true" 
+            onmouseout="window.status='';return true" 
+            href="http://www.keil.com/search.asp" 
+            target=_top>&nbsp;&nbsp;Search&nbsp;&nbsp;</A> <A class=MenuText 
+            onmouseover="window.status='Index of the Keil Software Web Site';return true" 
+            onmouseout="window.status='';return true" 
+            href="http://www.keil.com/siteindx.htm" 
+            target=_top>&nbsp;&nbsp;Index&nbsp;&nbsp;</A></TD>
+          <TD noWrap align=right width=190><A class=MenuText 
+            onmouseover="window.status='Find Out More About Keil Software';return true" 
+            onmouseout="window.status='';return true" 
+            href="http://www.keil.com/company/default.htm" 
+            target=_top>&nbsp;&nbsp;Company Information&nbsp;&nbsp;</A></TD>
+          <TD noWrap width=10>&nbsp;</TD></TR></TBODY></TABLE>
+      <TABLE class=Full cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top noWrap width=10 bgColor=#ffffcc>&nbsp;</TD>
+          <TD class=RiBar vAlign=top noWrap width=200 bgColor=#ffffcc>
+            <TABLE class=Full cellSpacing=0 cellPadding=0 width="100%" 
+              border=0><TBODY>
+              <TR>
+                <TD vAlign=top noWrap height="100%">
+                  <P class=SbTitle>Application Notes</P>
+                  <P class=SbText><A 
+                  href="http://www.keil.com/appnotes/">Categorical 
+                  Listing</A><BR><A 
+                  href="http://www.keil.com/appnotes/list.asp">Numerical 
+                  Listing</A><BR><BR><A 
+                  href="http://www.keil.com/appnotes/c166.asp">C166 Application 
+                  Notes</A><BR><A 
+                  href="http://www.keil.com/appnotes/c251.asp">C251 Application 
+                  Notes</A><BR><A 
+                  href="http://www.keil.com/appnotes/c51.asp">C51 Application 
+                  Notes</A><BR><A 
+                  href="http://www.keil.com/appnotes/uv2.asp">?Vision 
+                  Application Notes</A></P>
+                  <P class=SbTitle>More Information</P>
+                  <P class=SbText><A 
+                  href="http://www.keil.com/discuss/">Discussion Forum</A><BR><A 
+                  href="http://www.keil.com/download/">File Download 
+                  Area</A><BR><A href="http://www.keil.com/update/">Product 
+                  Updates</A><BR><A 
+                  href="http://www.keil.com/support/">Technical 
+                  Support</A><BR><BR><BR><BR><A 
+                  href="http://www.keil.com/appnotes/feedback.asp">Tell Us What 
+                  You Think</A><BR></P></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top noWrap width=10>&nbsp;</TD>
+          <TD vAlign=top>
+            <H1>C51 Application Notes</H1>
+            <UL>
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_101.asp">101</A>: C51 
+              Memory Space Utilization
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_103.asp">103</A>: 
+              8051 Interrupt Vectors
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_104.asp">104</A>: 
+              Relocating 8051 Programs
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_105.asp">105</A>: 
+              8051 Timer Interrupts
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_113.asp">113</A>: 
+              Using the Infineon C504 with the Phytec Eval Board
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_119.asp">119</A>: 
+              Using MON51 with the Intel 8x93x Family USB Rev B Eval Board
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_125.asp">125</A>: 
+              Using Keil 8051 Tools with the Metalink IceMASTER-PE
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_126.asp">126</A>: 
+              Using the Cypress EZ-USB AutoVector Interrupts
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_127.asp">127</A>: 
+              Using PK51, CA51, and CS51 with Windows NT4
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_128.asp">128</A>: 
+              Debugging Code Banking Applications with MON51
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_129.asp">129</A>: 
+              Function Pointers in C51
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_130.asp">130</A>: 
+              Using the XDATA Bank Switching Location
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_137.asp">137</A>: 
+              Using the Keil 8051 Tools with the SMC 97C100 Eval Board
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_149.asp">149</A>: 
+              Data Overlaying and Code Banking with A51 Assembler Modules
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_151.asp">151</A>: 
+              Using MON51 with the Analog Devices ADuC812 Eval Board
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_152.asp">152</A>: 
+              Installing and Using the Keil Monitor-51
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_153.asp">153</A>: 
+              Using and Programming the I?C Bus
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_156.asp">156</A>: 
+              Modifying the Keil MCBx51 Board for ISP-FLASH Programming
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_159.asp">159</A>: 
+              Downloading to Triscend E5 Devices
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_160.asp">160</A>: 
+              Programming the Philips 51MX Architecture with the Keil PK51
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_162.asp">162</A>: 
+              Programming the Cypress EZ-USB Board
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_165.asp">165</A>: 
+              T89C51CC01 CAN Bus Programming and Simulation
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_171.asp">171</A>: 
+              Using M8051EW Memory Extension
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_174.asp">174</A>: Use 
+              FlashMon on AT89C51SND1
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_175.asp">175</A>: Use 
+              ISD51 on TI MSC121x
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_177.asp">177</A>: Use 
+              ULINK with ST Turbo ?PSD 3300/3400 Devices
+              <LI><A 
+              href="http://www.keil.com/appnotes/docs/apnt_183.asp">183</A>: Use 
+              ISD51 on TI MSC1200</LI></UL>
+            <P><BR>If you have a problem or a question that is not addressed by 
+            an Application Note, please check the Keil Software <A 
+            href="http://www.keil.com/support/">Support Knowledgebase</A>.</P>
+            <P class=CopyRight><A 
+            href="http://www.keil.com/company/copyright.htm">Copyright</A> ? 
+            2004 <A href="http://www.keil.com/company/">Keil Software, Inc</A>. 
+            All rights reserved.<BR>Report any problems to the <A 
+            href="mailto:webmaster@keil.com">webmaster</A>.</P></TD>
+          <TD noWrap 
+width=10>&nbsp;</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></BODY></HTML>

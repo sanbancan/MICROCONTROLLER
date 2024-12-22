@@ -1,0 +1,54 @@
+BODY {
+	FONT: 10pt Tahoma, Verdana, Arial, Helvetica, sans-serif; TEXT-TRANSFORM: none
+}
+TABLE {
+	FONT-WEIGHT: normal; TEXT-TRANSFORM: none; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif; FONT-VARIANT: normal
+}
+TD {
+	FONT: 10pt Tahoma, Verdana, Arial, Helvetica, sans-serif; TEXT-TRANSFORM: none
+}
+PRE {
+	FONT-WEIGHT: normal; FONT-FAMILY: "Courier New", Courier, mono; FONT-VARIANT: normal
+}
+P {
+	FONT: 10pt Tahoma, Verdana, Arial, Helvetica, sans-serif; TEXT-TRANSFORM: none
+}
+B {
+	FONT-WEIGHT: bold
+}
+A:link {
+	TEXT-DECORATION: none
+}
+A:active {
+	TEXT-DECORATION: underline
+}
+A:visited {
+	TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff6666; TEXT-DECORATION: underline
+}
+H1 {
+	FONT: bold small-caps 18pt Tahoma, Verdana, Arial, Helvetica, sans-serif; TEXT-TRANSFORM: none
+}
+H2 {
+	FONT: bold small-caps 16pt Tahoma, Verdana, Arial, Helvetica, sans-serif; TEXT-TRANSFORM: none
+}
+H3 {
+	FONT: bold 12pt Tahoma, Verdana, Arial, Helvetica, sans-serif; TEXT-TRANSFORM: none
+}
+H4 {
+	FONT: bold 10pt Tahoma, Verdana, Arial, Helvetica, sans-serif; TEXT-TRANSFORM: none
+}
+LI {
+	FONT-SIZE: 10pt; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif
+}
+OL {
+	FONT-SIZE: 10pt; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif
+}
+UL {
+	FONT-SIZE: 10pt; FONT-FAMILY: Tahoma, Verdana, Arial, Helvetica, sans-serif
+}
+DIV {
+	FONT: 10pt Tahoma, Verdana, Arial, Helvetica, sans-serif; TEXT-TRANSFORM: none
+}

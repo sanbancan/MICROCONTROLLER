@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0037)http://www.tigerprecision.com/80c552/ -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY text=#00009e vLink=#51188e aLink=#ff0000 link=#0000ef bgColor=#ffffff>
+<H1>80c552 Resources (last updated 02/18/03)</H1>&nbsp;<A 
+href="mailto:kef762@yahoo.com">Email</A> me any corrections or suggestions for 
+this site.&nbsp; <A href="http://www.tigerprecision.com/">HOME</A> 
+<P>Criticisms go to /dev/null 
+<P>The following are assembly languages fragments that I have developed for the 
+Philips 80c552 microcontroller, and will most likely work in any 8051-compatible 
+CPU's. Most of them have "boilerplate" code around the functional code. By this 
+I mean that there is additional code to test the function, like serial port 
+setup, and writing a result to the serial port to display a result. It is likely 
+that you would not need this "glue" code in your application. Re-use of the 
+following code is permitted for <I><U>non-commercial educational use 
+only.</U></I> 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/tos/index.html">NEW! Tiny 
+O/S for the 80c552 (4 tasks, interrupt driven) 8/30/04</A> 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/UDP/index.html">*** 
+Implementing UDP/IP over SLIP!!! ***</A> 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/setup.html">My hardware 
+setup</A> 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/fp.html">Dealing with 
+floating point numbers</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/lettercount.asm">LetterCount 
+(component of a compression routine)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/multiply_by_2_64.asm">64 bit multiply 
+by 2</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/islower.asm">islower (returns true if 
+arg is a lowercase letter)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/isupper.asm">isupper (returns true if 
+argument is an uppercase letter)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/one_cpl_sum.asm">One's complement of 
+one's complement sum</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/memequ.asm">memequ (returns true if 
+memory blocks are equal, simpler than strcmp)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/char2bin.asm">Printing binary 
+equivalent of 8bit character</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/memset256.asm">Memset optimized for a 
+target that is a multiple of 256 bytes</A> 
+<P>Some Applications of the&nbsp; <A 
+href="http://www.tigerprecision.com/80c552/mul32.asm">MUL32 Routine:</A> 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/sine.asm">Sine of theta, 
+where theta &lt; PI/2</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/exp.asm">Exponent (base e) of X, 
+Taylor series, 1 + x + (x^2)/2 + .... + (x^13)/13!</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/cosine.asm">Cosine of theta, where 
+theta &lt; PI/2</A> 
+<P>Newton-Raphson Examples, also utilizing&nbsp; <A 
+href="http://www.tigerprecision.com/80c552/mul32.asm">MUL32:</A> 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/recip.asm">Reciprocal of 
+X</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/recip_sqrt.asm">Reciprocal of Square 
+Root of X</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/recip_cbrt.asm">Reciprocal of Cube 
+Root of X</A> 
+<P>8 Bit Routines: 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/ifxgty.asm">if x greater 
+than y (place values to be compared in r2 and r3)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/cksum_8bit.asm">Simple arithmetic 
+checksum</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/sqr_8bit.asm">Square root</A> 
+<BR>&nbsp;<A href="http://www.tigerprecision.com/80c552/mult10_8.asm">Multiply 
+Acc by 10 (the classic)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/crc8.asm">8-bit Cyclic Redundancy 
+Check</A> 
+<P>16 Bit Integer Routines: 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/add16.asm">addition</A> 
+<BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/sub16.asm">subtraction</A> 
+<BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/cksum_16bit.asm">checksum</A> 
+<BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/dec16bit.asm">decrement</A> 
+<BR>&nbsp;<A href="http://www.tigerprecision.com/80c552/div16.asm">division 
+(based on code from www.6502.com)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/equ16bit.asm">test for equality</A> 
+<BR>&nbsp;<A href="http://www.tigerprecision.com/80c552/ifxgty16.asm">if x 
+greater than y</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/inc16bit.asm">increment</A> 
+<BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/mul16.asm">multiplication (based on 
+code from www.6502.com)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/shl4_16.asm">shift left 4 bits</A> 
+<BR>&nbsp;<A href="http://www.tigerprecision.com/80c552/shr4_16.asm">shift right 
+4 bits</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/cksum_16bit.asm">Simple arithmetic 
+checksum</A> 
+<P>32 Bit Routines: 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/mul32.asm">multiplication 
+(tested heavily, bug report feedback is appreciated)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/add32.asm">addition</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/sub32.asm">subtraction</A> 
+<BR>&nbsp;<A href="http://www.tigerprecision.com/80c552/or32.asm">logical OR</A> 
+<BR>&nbsp;<A href="http://www.tigerprecision.com/80c552/and32.asm">logical 
+AND</A> <BR>&nbsp;<A href="http://www.tigerprecision.com/80c552/cpl32.asm">2's 
+complement</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/shl4_32.asm">shift left 4 bits</A> 
+<BR>&nbsp;<A href="http://www.tigerprecision.com/80c552/shr4_32.asm">shift right 
+4 bits</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/xor32.asm">exclusive OR</A> 
+<BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/divide_by_2_32.asm">Divide by 2 
+(arithmetic shift right)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/multiply_by_2_32.asm">Multiply by 2 
+(arithmetic shift left)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/shl8_32.asm">Divide by 256 (shift 
+left 8 bits)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/shr8_32.asm">Multiply by 256 (shift 
+right 8 bits)</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/ifxgty32.asm">If X greater than, 
+equal to, less than Y</A> 
+<P>Memory Manipulation: 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/memcpy.asm">memcpy</A> 
+(Place source address in r0:r1, destination in r2:r3, number of bytes (up to 
+255) to copy in r4) <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/memset.asm">memset</A> (Place start 
+address in r0:r1, value to set memory to in r2, number of bytes (up to 255) in 
+r3) 
+<P>Array Manipulation: 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/matrix1.asm">Example of 
+accessing a two dimensional array</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/list_sort.asm">Sorting a region of 
+memory</A> 
+<P>String Operations: 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/strcmp.asm">strcmp</A> 
+<BR>&nbsp;<A href="http://www.tigerprecision.com/80c552/strlen.asm">strlen</A> 
+<BR>&nbsp;<A href="http://www.tigerprecision.com/80c552/strstr.asm">Find 
+position of string2 within string1</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/toupper.asm">Convert lowercase 
+characters within a string to uppercase</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/tolower.asm">Convert uppercase 
+characters within a string to lowercase</A> 
+<P>Formatting and Displaying Data: 
+<P>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/print_2dig_hex.asm">Printing 8-bit 
+value in hexadecimal</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/print_string.asm">Printing a 
+string</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/print_dec_char.asm">Printing 8-bit 
+value in decimal</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/print_dec_short.asm">Printing 16-bit 
+value in decimal</A> 
+<P>Loops: 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/loop3.asm">Nested 3-level 
+FOR loop</A> 
+<P>Pointer Related Examples: 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/funcptr.asm">Example of 
+function pointer dereferencing</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/dbl_pntr.asm">Example of double 
+pointer derefencing</A> <BR>&nbsp; 
+<P>Miscellaneous: 
+<P>&nbsp;<A href="http://www.tigerprecision.com/80c552/timer.asm">Using timer 0 
+to time execution of code</A> <BR>&nbsp;<A 
+href="http://www.tigerprecision.com/80c552/swap_r0r3_r4r7.asm">Swap regsiters 
+R0-R3 with R4-R7</A> </P></BODY></HTML>

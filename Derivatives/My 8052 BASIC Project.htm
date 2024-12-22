@@ -1,0 +1,183 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0039)http://www.nomad.ee/micros/8052bas.html -->
+<HTML><HEAD><TITLE>My 8052 BASIC Project</TITLE><!-- #BeginTemplate "/Templates/nomad.dwt" --><LINK 
+href="/favicon.ico" type=image/ico rel=icon><LINK href="/favicon.ico" 
+rel="SHORTCUT ICON"><!-- #BeginEditable "header" --><!-- #EndEditable -->
+<META http-equiv=Content-Type content="text/html; charset=utf-8"><LINK 
+href="My 8052 BASIC Project_files/nomad.css" rel=stylesheet>
+<META content="MSHTML 6.00.2800.1106" name=GENERATOR></HEAD>
+<BODY text=#000000 vLink=#003399 aLink=#cc0033 link=#3333ff bgColor=#ffffff><!-- #BeginEditable "page" -->
+<H3 align=center>My first 8052 BASIC Project</H3>
+<DIV align=center>
+<TABLE height=30 width="75%">
+  <TBODY>
+  <TR>
+    <TD><SPAN class=story>
+      <P align=center><A href="http://www.nomad.ee/micros/8052brd.jpg"><IMG 
+      height=113 src="My 8052 BASIC Project_files/8052brd1.jpg" width=150 
+      align=middle border=0></A></P>
+      <P>PIC is a nice little chip, but it does have it's limitations. However, 
+      there is a relatively cheap way to have a BASIC programmable 
+      microcontroller system. Some time in early 80-ies Intel produced a 
+      mask-prgrammed 8052 MCU which contained a floating-point Basic interpreter 
+      with lots of interesting features, including built-in support for EPROM 
+      storage of BASIC programs. There is a plethora of information scattered on 
+      the web about this chip, but no one place provides a complete set of 
+      instructions to get you started. This project is my attempt to provide 
+      just that.</P>
+      <P>So, first of all, you need a 80C52 or compatible microcontroller. There 
+      are several producers, I used Atmel's AT89C52 which is FLASH based, so it 
+      can be reprogrammed (as opposed to 80C52 which is OTP part). Any 89C52 or 
+      87C52 part will do fine for experimenting, but if you do not have a 
+      programmer for 8051 family of MCU-s, Atmel also has a AT89S8252 (8052 
+      compatible chip with 2K of EEPROM built in) with a serial programming 
+      interface which makes building a programmer much easier.</P>
+      <P>Once you have the controller, you need a board to stick it in. I built 
+      mine from scavanged parts and it has serial port, full data and address 
+      bus buffering, 32K static RAM and 8K or 16K of EPROM on board. I'm feeding 
+      this beast from standard PC power supply, using 12V for EPROM programming 
+      directly. National Semiconductor's 12.5V VPP parts seem to program just 
+      fine at 12V. <A href="http://www.nomad.ee/micros/8052bas.gif">Click here 
+      to see the schematics</A>. </P>
+      <P><B>Bear in mind that this was my first 8052-BASIC project, so the 
+      hardware is quite a bit overengineered on some parts while it misses some 
+      stuff that should be implemented in other parts. A better, lower chip 
+      count and fully implemented 8052-BASIC core is available <A 
+      href="http://www.nomad.ee/micros/8052core.html">here</A>.</B></P>
+      <P>Just a few short remarks:</P>
+      <UL>
+        <LI>The external code and data address spaces are combined into one. 
+        Code space is 8K of internal ROM followed by shared memory space which 
+        starts with RAM from 0, and continues with ROM from 8000H. The address 
+        space from C000H is not used on board, and is available for I/O or ROM 
+        expansion. 
+        <LI>Resistor pack RN2 is not required, but it does help to keep the data 
+        bus in order. 
+        <LI>74245 chips can cause serious glitches on power and signal lines, 
+        make sure you have bypass caps near them. I initially used Soviet parts 
+        and was unable to get them to behave at all. 
+        <LI>It seems tempting to use 27256 EPROM to provide full 32K of ROM 
+        storage as well, but as the PGM signal is shared with one of the chip 
+        selects, the programming timings will be impossible to sort out. I gave 
+        up after several days of head scratching and just divided the ROM space 
+        in two, decoding only first half on the board 
+        <LI>JP3 allows to switch off internal ROM.when center pin is grounded. 
+        <LI>JP5 selects between 2764 (center pin connected to A13) and 27128 
+        (center pin grounded) EPROM 
+        <LI>I used 40 pin IDE connector for external bus, because it is small, 
+        connection cables are readily available, and I had a broken motherboard 
+        with two IDE connectors on it :) 
+        <LI>I built my version on one-sided perfboard, using point-to-point 
+        soldered wires (from phone cable) on component side. It's not the most 
+        convinient and best-looking, but it works. 
+        <LI>My version also has a RESET button in parallel with C7. </LI></UL>
+      <P>Now, once you have the board download the <A 
+      href="http://www.nomad.ee/micros/bas52all.zip">interpreter source and 
+      binary code</A>, program the MCU, stick it into socket on your board, hook 
+      up the PC with straight modem cable, and power on. Wait a second or two, 
+      then press space on the keyboard. If you have everything right, the 
+      interpreter will detect the baud rate you are using and output</P><PRE><B>*MCS-51(tm) BASIC V1.1*
+READY
+&gt;</B></PRE>
+      <P><BR>When you get this far, things are looking good. Enter <B>PRINT 
+      MTOP</B> at prompt, you should get 32767 if you used 32K RAM. To verify 
+      EPROM cicruit, try entering <B>PROG1</B> at prompt, if you do not get a 
+      programming error then you just wrote the baud rate to use into EPROM, and 
+      BASIC will not wait for keypress next time you start it. Before going on 
+      to literature and references, here are two programs that I wrote, the 
+      first of them has proved very valuable.</P>
+      <P>You will usually work in RAM, but when you try to make a more permanent 
+      copy of your code, you enter <B>PROG</B> (or <B>FPROG</B>) at prompt to 
+      transfer the code into EPROM. BASIC will give you a sequence number of the 
+      program just stored and this number is the only way to refer to the stored 
+      program. To improve things, I always write this program into EPROM 
+      first:</P><PRE><B>10     REM Basic ROM directory
+20    ADR=8010H : PN=1
+30     IF XBY(ADR)&lt;&gt;55H THEN  END
+40    ADR=ADR+1 : BA=ADR
+50     IF XBY(ADR)=1 THEN  GOTO 80
+60    ADR=ADR+XBY(ADR): GOTO 50
+80     GOSUB 100: PRINT : PN=PN+1 : ADR=ADR+1:   GOTO 30
+100    PRINT "PRG",PN,"from ", :  PH1. BA, :  PRINT " to ", :  PH1. ADR,
+110    PRINT " (",ADR-BA,"bytes)",
+120   NB=XBY(BA)-2: IF NB&lt;4 THEN RETURN
+130 IF XBY(BA+3)&lt;&gt;96H THEN  RETURN
+140    FOR XX=BA+4 TO BA+NB:PRINT CHR(XBY(XX)),: NEXT : RETURN</B></PRE>
+      <P>When run, this program lists all programs stored into EPROM by giving 
+      code start and end address, length of the code, and most importantly, if 
+      the first program line is a comment, it will print out the text after REM 
+      keyword. The example output might look something like that:</P><PRE><B>PRG 1 from  8011H to  8134H (291 bytes) Basic ROM directory
+PRG 2 from  8136H to  81CDH (151 bytes) ROM dump</B></PRE>
+      <P>Now, when I power the board on, I just enter RROM 1 and I have a 
+      complete listing of all stored programs. Much better. The second useful 
+      piece of code is memory dump program:</P><PRE><B>10 REM ROM dump
+20   ADR=8000H
+30    PRINT  :  GOSUB 70: PRINT  :  PRINT "More?",
+40   A=GET :  IF A=0 THEN  GOTO 40
+50    IF A&lt;&gt;27 THEN  GOTO 30
+60    END
+70    FOR XA=ADR TO ADR+255:  X=XA.AND.0FH:  IF X&lt;&gt;0 THEN  GOTO 90
+80    PRINT  :  PH1. XA,
+90    PH0. XBY(XA),:  NEXT :  ADR=XA:  RETURN</B></PRE>
+      <P>It starts at 8000H and dumps pages until you press ESC at the prompt. 
+      The data is taken from external data memory space, you need to change 
+      XBY() to CBY() to read internal ROM, or DBY() to read internal register 
+      space.</P>
+      <H3 align=center>IDE Interface</H3>
+      <P>While 16K of EPROM is a lot compared to PIC memory space, it is nothing 
+      in todays information overload. For serious data logging, and just for 
+      fun, here is a <A href="http://www.nomad.ee/micros/bas52ide.gif">schematic 
+      drawing for IDE drive interface</A>. If you are willing to waste 50% of 
+      the disk space, and stretch the IDE interface specs a bit, you can leave 
+      out all IC-s except IC1, and connect LED directly to /DASP line. You will 
+      be able to read and write only lower 8 bits of the data words, but 
+      otherwise it will work just fine, because all control registers are 
+      8-bit.However, I wanted to access all bytes, so I built extra register to 
+      capture high byte of the data word. IC1 decodes IDE command block 
+      registers at 0E000H-0E007H, IDE control block registers at 0E008H-0E00FH, 
+      and the extra data register at 0E010H. </P>
+      <P>I am tinkering with a software now, so far I have</P>
+      <UL>
+        <LI><A href="http://www.nomad.ee/micros/driveid.html">Program that reads 
+        IDE drive parameters and displays them</A> 
+        <LI><A href="http://www.nomad.ee/micros/idepwr.html">Program that allows 
+        you to play with commands (standby, sleep, reset, 
+        diagnostics,recalibrate). It also reads and dumps sector contents</A> 
+        </LI></UL>
+      <P>As usual, once I got the hardware working and concept proven I lost 
+      interest in the project so this is what I have and there is but a very 
+      little hope that there will be something more coming under this 
+      project.<B></B>. </P>
+      <H3 align=center><B>Standards</B></H3>
+      <UL>
+        <LI><A href="http://www.nomad.ee/micros/ATA3-R6.ZIP">ATA3R6</A> document 
+        documents the physical interface and HDD command set 
+        <LI><A href="http://www.nomad.ee/micros/D1153R18.ZIP">ATAPI-4</A> 
+        document is needed if you want to play with CD-ROM 
+      drives<BR><B></B></LI></UL>
+      <H3 align=center>8052 reference sites</H3>
+      <UL>
+        <LI><A href="http://www.8052.com/">http://www.8052.com/</A> is a good 
+        starting point 
+        <LI><A href="http://www.ustr.net/files/download.htm">UST Research Inc. 
+        Download area</A> contains a lot of goodies 
+        <LI><A href="http://www.code.archive.aisnota.com/">BASIC-52,8051,8052, 
+        SOL, KIM, Tiny Basic code archive</A> 
+        <LI><A href="http://sdcc.sourceforge.net/">SDCC - Freeware, Optimizing C 
+        Compiler for 8051</A> </LI></UL>
+      <H3 align=center>Useful literature</H3>
+      <UL>
+        <LI><A href="http://www.systronix.com/sy10003.htm">BASIC-52 PROGRAMMING 
+        from Systronix Inc.</A> is a sort of replacement for original Intel 
+        8052AH-BASIC user manual. No circuits. 
+        <LI><A href="http://www.lvr.com/microcib.htm">The Microcontroller Idea 
+        Book by Jan Axelson</A>, I have not yet received mine. 
+        <LI>The Best of Ciarcia's <A 
+        href="http://www.circuitcellar.com/">Circuit Cellar</A> by Steve 
+        Ciarcia, ISBN 0-07-011025-5<BR>contains lots of useful information and 
+        shcematics examples for 8052 BASIC and other widgets. 
+        <LI>Real hard-code hackers will, of course, just read a source code :) 
+        </LI></UL>
+      <H3 align=center>&nbsp;</H3></SPAN></TD></TR></TBODY></TABLE></DIV>
+<P 
+align=center>&nbsp;</P><!-- #EndEditable --><!-- #EndTemplate --></BODY></HTML>
